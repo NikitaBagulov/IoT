@@ -10,7 +10,7 @@ client.connect(broker)
 client.loop_start()
 print("Publishing")
 
-topic = "kate/command"
+topic = input("Enter topic: ")
 
 current_time = datetime.now()
 last_min = current_time.minute
