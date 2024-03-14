@@ -4,10 +4,15 @@ from data.schemas import Data
 app = FastAPI()
 
 
-@app.get('/get_data')
+data=Data()
+
+@app.get('/get_data', response_model=Data)
 def get_data():
-    pass
+    return data
 
 @app.post('add_data', response_model=Data)
-def add_data(data: Data):
-    pass
+def add_value_in_data(value: float, loc: str):
+    data.values.append(value)
+    data.location = loc
+    return data
+
