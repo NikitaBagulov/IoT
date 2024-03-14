@@ -1,5 +1,6 @@
 from pydantic import BaseModel
+from typing import List
 
 class Data(BaseModel):
-    values: list
+    values: List[float]
     location: str
