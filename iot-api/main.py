@@ -1,18 +1,13 @@
 from fastapi import FastAPI
-from data.schemas import Data
+from measurements.router import router as measurement_router
+from database import Base, engine
+
 
 app = FastAPI()
 
+Base.metadata.create_all(bind=engine)
+app.include_router(measurement_router)
 
-data=Data()
-
-@app.get('/get_data', response_model=Data)
-def get_data():
-    return data
-
-@app.post('add_data', response_model=Data)
-def add_value_in_data(value: float, loc: str):
-    data.values.append(value)
-    data.location = loc
-    return data
-
+@app.get("/")
+def greet():
+    return {"Message": "Hello!!!"}
